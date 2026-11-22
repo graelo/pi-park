@@ -6,7 +6,7 @@ Park interesting Pi conversations in a directory of Markdown notes, and fork the
 
 ## Parking lot
 
-Registrations live in `${XDG_DATA_HOME:-~/.local/share}/pi-park/`. Each has YAML frontmatter with a session ID, source session file, original working directory and parking time, followed by a model-generated summary. New notes are written to the root; you can rename and move them into subdirectories. Do not change the metadata unless you intend to change the referenced session.
+Registrations live in `${XDG_DATA_HOME:-~/.local/share}/pi-park/`. Each has YAML frontmatter with a session ID, source session file, original working directory and parking time, followed by a summary or manually written notes. New notes are written to the root; you can rename and move them into subdirectories. Do not change the metadata unless you intend to change the referenced session.
 
 In Pi, use `/park` to generate a summary with the current model. From a shell, `pi-park --session <full-session-id>` prompts for your own notes without calling a model. Add `--summarize` to request a model-generated summary instead. Model calls may incur cost and send conversation content to the provider; `/park` is not necessarily free. When parking the same session again, you are asked before its existing note is replaced. Noninteractive re-parking refuses to overwrite it.
 
@@ -18,7 +18,7 @@ From the directory where you want to continue:
 pi-unpark
 ```
 
-Choose a registration using `fzf`; Escape cancels. The selected Markdown file is previewed. Pi creates the fork in the current directory; the registration and source session remain untouched. You can also use `pi --fork <session-id>` directly.
+Choose a registration using `fzf`; Escape cancels. The selected Markdown file is previewed. If `bat` is installed, it colorizes the preview using your configured theme; otherwise the raw Markdown is shown. Your `FZF_DEFAULT_OPTS` settings control fzf's interface. Pi creates the fork in the current directory; the registration and source session remain untouched. You can also use `pi --fork <session-id>` directly.
 
 Forking copies the session as it exists **at unpark time**, not a snapshot from when it was parked. It does not restore the original workspace or uncommitted changes.
 
