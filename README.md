@@ -6,7 +6,13 @@ Park interesting Pi conversations in a directory of Markdown notes, and fork the
 
 ## Parking lot
 
-Registrations live in `${XDG_DATA_HOME:-~/.local/share}/pi-park/`. Each has YAML frontmatter with a session ID, source session file, original working directory and parking time, followed by a summary or manually written notes. New notes are written to the root; you can rename and move them into subdirectories. Do not change the metadata unless you intend to change the referenced session.
+Registrations live in `${XDG_DATA_HOME:-~/.local/share}/pi-park/` by default. Set `PI_PARK_DIR` to an absolute path to use a different parking lot; an unset or empty value uses the default. Set it in the environment that starts Pi as well as in shells running `pi-park` or `pi-unpark`:
+
+```sh
+export PI_PARK_DIR="$HOME/Documents/parked-sessions"
+```
+
+Each registration has YAML frontmatter with a session ID, source session file, original working directory and parking time, followed by a summary or manually written notes. New notes are written to the root; you can rename and move them into subdirectories. Do not change the metadata unless you intend to change the referenced session.
 
 In Pi, use `/park` to generate a summary with the current model. From a shell, `pi-park --session <full-session-id>` prompts for your own notes without calling a model. Add `--summarize` to request a model-generated summary instead. Model calls may incur cost and send conversation content to the provider; `/park` is not necessarily free. When parking the same session again, you are asked before its existing note is replaced. Noninteractive re-parking refuses to overwrite it.
 

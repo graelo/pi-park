@@ -20,9 +20,9 @@ test("/park writes a model summary and does not write on model failure", async (
         sessionManager:{getSessionFile:()=>'/source.jsonl', getSessionId:()=>fail?'failed-id':'good-id', getHeader:()=>({cwd:'/project'}), buildSessionProjection:()=>({messages:[{role:'user',content:'Hello'}]})},
         modelRegistry:{complete:async()=>fail?{stopReason:'error',errorMessage:'offline',content:[]}:{stopReason:'stop',content:[{type:'text',text:'# Summary\\n\\nInteresting work.'}]}}};
       await command.handler('',ctx); fail=true; await command.handler('',ctx);
-      const results=await discover(process.env.XDG_DATA_HOME+'/pi-park');
+      const results=await discover(process.env.PI_PARK_DIR);
       console.log(JSON.stringify({results,notices}));`;
-    const result = spawnSync(process.execPath, ["--input-type=module", "-e", script], { env: { ...process.env, XDG_DATA_HOME: root }, encoding: "utf8" });
+    const result = spawnSync(process.execPath, ["--input-type=module", "-e", script], { env: { ...process.env, XDG_DATA_HOME: root, PI_PARK_DIR: join(root, "custom-lot") }, encoding: "utf8" });
     assert.equal(result.status, 0, result.stderr);
     const data = JSON.parse(result.stdout);
     assert.equal(data.results.length, 1);

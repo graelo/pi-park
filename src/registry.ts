@@ -2,7 +2,7 @@ import { constants } from "node:fs";
 import { access, link, mkdir, open, readFile, readdir, rename, unlink } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { isAbsolute, join } from "node:path";
 import { parse, stringify } from "yaml";
 
 export interface Metadata {
@@ -14,6 +14,11 @@ export interface Metadata {
 export interface Registration { path: string; metadata: Metadata; body: string }
 
 export function lotPath(): string {
+  const override = process.env.PI_PARK_DIR;
+  if (override) {
+    if (!isAbsolute(override)) throw new Error("PI_PARK_DIR must be an absolute path");
+    return override;
+  }
   return join(process.env.XDG_DATA_HOME || join(homedir(), ".local", "share"), "pi-park");
 }
 
