@@ -19,3 +19,17 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm test
+      - name: Verify packed CLI installation
+        shell: bash
+        run: |
+          temp=$(mktemp -d)
+          npm pack --pack-destination "$temp"
+          npm install --global --prefix "$temp/global" "$temp"/*.tgz
+          test -x "$temp/global/bin/pi-park"
+          test -x "$temp/global/bin/pi-unpark"
+          status=0; output=$("$temp/global/bin/pi-park" 2>&1) || status=$?
+          test "$status" -eq 2
+          grep -q 'Usage: pi-park' <<< "$output"
+          status=0; output=$(XDG_DATA_HOME="$temp/data" "$temp/global/bin/pi-unpark" 2>&1) || status=$?
+          test "$status" -eq 1
+          grep -q 'No parked sessions found' <<< "$output"

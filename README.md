@@ -24,11 +24,21 @@ Forking copies the session as it exists **at unpark time**, not a snapshot from 
 
 ## Dependencies and installation
 
-Requires Node.js 24+, Pi, and `fzf` (for `pi-unpark`). The extension is a Pi package; standalone executables need a separate npm installation or link, since installing a Pi package does not put its binaries on PATH. Installation from a local checkout for development:
+Requires Node.js 24+, Pi, and `fzf` (for `pi-unpark`); `bat` is optional. The extension is a Pi package; standalone executables need a separate npm installation or link, since installing a Pi package does not put its binaries on PATH.
+
+Once published on npm, install both with:
+
+```sh
+pi install npm:@graelo/pi-park
+npm install -g @graelo/pi-park
+```
+
+Before publication, the extension can be installed with `pi install git:github.com/graelo/pi-park`. Direct global npm installation from Git has failed in testing with npm 11; use a packed tarball or a local checkout instead.
+
+Installation from a local checkout for development:
 
 ```sh
 npm install
-npm run build
 pi install /absolute/path/to/pi-park
 npm link
 ```
@@ -46,5 +56,7 @@ npm install
 npm run check
 npm test
 ```
+
+To publish a new version, run `npm publish` from this directory. `publishConfig` marks the scoped package public; publishing requires npm authentication and permission for the `@graelo` scope.
 
 Licensed under MIT.

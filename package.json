@@ -5,12 +5,13 @@
   "type": "module",
   "main": "src/index.ts",
   "bin": {"pi-park": "dist/cli.js", "pi-unpark": "dist/cli.js"},
-  "files": ["src", "bin", "dist", "README.md", "LICENSE"],
+  "files": ["src", "dist", "scripts", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "check": "tsc --noEmit",
     "test": "npm run build && tsx --test test/*.test.ts",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "node scripts/prepare.mjs"
   },
   "peerDependencies": {"@earendil-works/pi-coding-agent": "*"},
   "dependencies": {"yaml": "^2.8.2"},
