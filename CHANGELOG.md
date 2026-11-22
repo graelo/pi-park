@@ -7,6 +7,16 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-22
+
+### Changed
+
+- Removed the README's work-in-progress notice.
+
+### Tests
+
+- Expanded coverage for malformed registrations, unusual filenames, session lookup, cancellation, missing dependencies, and source identity validation.
+
 ## [0.2.0] - 2026-11-22
 
 ### Added
