@@ -1,6 +1,6 @@
 {
   "name": "@graelo/pi-park",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Park interesting Pi sessions in a browsable Markdown registry",
   "type": "module",
   "main": "src/index.ts",

@@ -7,6 +7,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-22
+
 ### Added
 
 - Set `PI_PARK_DIR` to an absolute path to choose a parking lot shared by `/park`, `pi-park`, and `pi-unpark`. An unset or empty value keeps the existing default.
