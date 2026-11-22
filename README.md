@@ -2,8 +2,6 @@
 
 Park interesting Pi conversations in a directory of Markdown notes, and fork them later into a different working directory.
 
-> **Work in progress:** the workflows and installation described here need further integration testing.
-
 ## Parking lot
 
 Registrations live in `${XDG_DATA_HOME:-~/.local/share}/pi-park/` by default. Set `PI_PARK_DIR` to an absolute path to use a different parking lot; an unset or empty value uses the default. Set it in the environment that starts Pi as well as in shells running `pi-park` or `pi-unpark`:

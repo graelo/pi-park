@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, mkdir, rename, rm } from "node:fs/promises";
+import { mkdtemp, mkdir, rename, rm, writeFile, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createRegistration, decode, discover, encode, replaceRegistration } from "../src/registry.js";
@@ -17,7 +17,10 @@ test("moved registration is discovered and blocks silent replacement", async () 
   try {
     const path = await createRegistration(root, meta, "Summary");
     await mkdir(join(root, "folder"));
-    await rename(path, join(root, "folder", "renamed.md"));
+    await rename(path, join(root, "folder", "renamed 'note'\nwith spaces.md"));
+    await writeFile(join(root, "invalid.md"), '---\nsession_id: [unterminated\n---\nInvalid');
+    await writeFile(join(root, "missing-fields.md"), '---\nsession_id: test\n---\nInvalid');
+    await symlink(root, join(root, "folder", "cycle"));
     const registrations = await discover(root);
     assert.equal(registrations.length, 1);
     assert.equal(registrations[0].metadata.session_id, meta.session_id);
