@@ -4,8 +4,17 @@
   "description": "Park interesting Pi sessions in a browsable Markdown registry",
   "type": "module",
   "main": "src/index.ts",
-  "bin": {"pi-park": "dist/cli.js", "pi-unpark": "dist/cli.js"},
-  "files": ["src", "dist", "scripts", "README.md", "LICENSE"],
+  "bin": {
+    "pi-park": "dist/cli.js",
+    "pi-unpark": "dist/cli.js"
+  },
+  "files": [
+    "src",
+    "dist",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "check": "tsc --noEmit",
@@ -13,13 +22,37 @@
     "prepack": "npm run build",
     "prepare": "node scripts/prepare.mjs"
   },
-  "peerDependencies": {"@earendil-works/pi-coding-agent": "*"},
-  "dependencies": {"yaml": "^2.8.2"},
-  "devDependencies": {"@earendil-works/pi-coding-agent": "^1.6.0", "@types/node": "^24", "tsx": "^4.23.11", "typescript": "^6.0.3"},
-  "pi": {"extensions": ["./src/index.ts"]},
-  "repository": {"type": "git", "url": "git+https://github.com/graelo/pi-park.git"},
-  "keywords": ["pi-package", "pi-extension", "sessions"],
-  "engines": {"node": ">=24"},
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "dependencies": {
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^1.6.0",
+    "@types/node": "^24",
+    "tsx": "^4.23.11",
+    "typescript": "^6.0.3"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graelo/pi-park.git"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "sessions"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
   "license": "MIT",
-  "publishConfig": {"access": "public"}
+  "publishConfig": {
+    "access": "public"
+  }
 }
