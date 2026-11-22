@@ -7,6 +7,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-22
+
 ### Fixed
 
 - Handle an early `fzf` exit without an unhandled broken-pipe error, including when selection is cancelled.
