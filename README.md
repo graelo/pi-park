@@ -18,7 +18,7 @@ From the directory where you want to continue:
 pi-unpark
 ```
 
-Choose a registration using `fzf`; Escape cancels. The selected Markdown file is previewed. If `bat` is installed, it colorizes the preview using your configured theme; otherwise the raw Markdown is shown. Your `FZF_DEFAULT_OPTS` settings control fzf's interface. Pi creates the fork in the current directory; the registration and source session remain untouched. You can also use `pi --fork <session-id>` directly.
+Choose a registration using `fzf`; Escape cancels. The selected Markdown file is previewed. If `bat` is installed, it colorizes the preview using your configured theme and filename-based syntax mappings; otherwise the raw Markdown is shown. Your `FZF_DEFAULT_OPTS` settings control fzf's interface. Pi creates the fork in the current directory; the registration and source session remain untouched. You can also use `pi --fork <session-id>` directly.
 
 Forking copies the session as it exists **at unpark time**, not a snapshot from when it was parked. It does not restore the original workspace or uncommitted changes.
 

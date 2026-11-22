@@ -18,7 +18,7 @@ test("preview uses bat without overriding its theme and falls back to Markdown",
     await writeFile(join(bin, "bat"), '#!/bin/sh\nprintf "args:%s\\n" "$*"\n/bin/cat\n', { mode: 0o755 });
     const colored = run();
     assert.equal(colored.status, 0);
-    assert.equal(colored.stdout, "args:--color=always --paging=never --language=markdown\n# Hello\n");
+    assert.equal(colored.stdout, `args:--color=always --paging=never --file-name ${note}\n# Hello\n`);
     await writeFile(join(bin, "bat"), "#!/bin/sh\nprintf partial\nexit 1\n", { mode: 0o755 });
     assert.equal(run().stdout, "# Hello\n");
   } finally { await rm(root, { recursive: true, force: true }); }
