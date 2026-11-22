@@ -28,7 +28,11 @@ export async function unpark(): Promise<number> {
   let output = "";
   child.stdout.setEncoding("utf8");
   child.stdout.on("data", chunk => { output += chunk; });
-  const result = new Promise<number>((resolve, reject) => { child.on("error", reject); child.on("close", code => resolve(code ?? 1)); });
+  const result = new Promise<number>((resolve, reject) => {
+    child.on("error", reject);
+    child.stdin.on("error", error => { if ((error as NodeJS.ErrnoException).code !== "EPIPE") reject(error); });
+    child.on("close", code => resolve(code ?? 1));
+  });
   child.stdin.end(lines.join("\0") + "\0");
   const code = await result;
   if (code === 130 || code === 1) return 0;

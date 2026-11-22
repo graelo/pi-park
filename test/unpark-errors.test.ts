@@ -17,7 +17,7 @@ test("unpark handles cancellation, missing fzf, invalid selections and missing s
     const run = () => spawnSync(process.execPath, ["--input-type=module", "-e", program], { env: { ...process.env, PATH: bin, PI_PARK_DIR: lot, PI_CODING_AGENT_SESSION_DIR: root }, encoding: "utf8" });
     const missing = run(); assert.equal(missing.status, 1); assert.match(missing.stderr, /ENOENT/);
     await writeFile(join(bin, "fzf"), "#!/bin/sh\nexit 130\n", { mode: 0o755 });
-    assert.equal(run().status, 0);
+    const cancelled = run(); assert.equal(cancelled.status, 0, cancelled.stderr);
     await writeFile(join(bin, "fzf"), '#!/bin/sh\nprintf "99\\tselected\\0"\n', { mode: 0o755 });
     const invalid = run(); assert.equal(invalid.status, 1); assert.match(invalid.stderr, /Invalid fzf selection/);
     await writeFile(join(bin, "fzf"), '#!/bin/sh\nprintf "0\\tselected\\0"\n', { mode: 0o755 });
