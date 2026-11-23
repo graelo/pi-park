@@ -7,6 +7,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Fixed
+
+- Label CLI errors with the invoked command (`pi-park` vs `pi-unpark`) instead of always prefixing `pi-park`.
+
 ### Changed
 
 - Expand the README with a quick start, command reference, troubleshooting table, uninstall instructions, and design-doc links.
