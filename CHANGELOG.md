@@ -7,6 +7,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Changed
+
+- Expand the README with a quick start, command reference, troubleshooting table, uninstall instructions, and design-doc links.
+
 ## [0.2.2] - 2026-11-22
 
 ### Fixed
